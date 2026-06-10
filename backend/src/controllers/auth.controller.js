@@ -34,11 +34,11 @@ export const signup = async (req, res) => {
         });
 
         if (newUser) {
-            // before Code Rabbit suggestion:
+            // before Code Rabbit suggestions:
             // generateToken(newUser._id, res);
             // await newUser.save();
 
-            // after Code Rabbit suggestion:
+            // after Code Rabbit suggestions:
             // Persist user first, then issue auth cookie
             const savedUser = await newUser.save();
             generateToken(savedUser._id, res);

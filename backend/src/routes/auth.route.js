@@ -9,7 +9,7 @@ const router = express.Router();
 //     res.status(200).json({ message: "Auth route is working!" });
 // });
 
-router.use(arcjetProtection);
+// router.use(arcjetProtection);
 
 router.post("/signup", signup);
 

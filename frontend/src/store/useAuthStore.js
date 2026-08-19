@@ -31,5 +31,13 @@ export const useAuthStore = create((set) => ({
 
         }
 
+
+export const useAuthStore = create((set) => ({
+    authUser: { name: "john", id: 123, age: 25 },
+    isLoggedIn: false,
+    isLoading: false,
+    login: () => {
+        console.log("we just login");
+        set({ isLoggedIn: true, isLoading: true });
     }
 }));

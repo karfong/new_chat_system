@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router";
+import React from "react";
+import { Route, Routes } from "react-router";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import ChatPage from "./pages/ChatPage";
@@ -17,6 +19,11 @@ const App = () => {
   console.log("authUser", authUser);
 
   if (isCheckingAuth) return <PageLoader />;
+
+const App = () => {
+  const { authUser, isLoggedIn, login } = useAuthStore();
+  console.log("auth user:", authUser);
+  console.log("isLoggedIn:", isLoggedIn);
   return (
     <div className="min-h-screen bg-slate-900 relative flex items-center justify-center p-4 overflow-hidden">
       {/*Decorators - grid background and glow shapes*/}
@@ -36,6 +43,12 @@ const App = () => {
         <Route path="/" element={authUser ? <ChatPage /> : <LoginPage />} />
       </Routes>
       <Toaster />
+      <button onClick={login} className="z-10">login</button>
+      <Routes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/" element={<ChatPage />} />
+      </Routes>
     </div>
   );
 };

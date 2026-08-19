@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router";
 
-const SignUpPage = () => {
+function SignUpPage() {
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -148,14 +148,3 @@ const SignUpPage = () => {
 };
 
 export default SignUpPage;
-import React from 'react'
-
-const SignUpPage = () => {  
-  return (
-    <div>
-      
-    </div>
-  )
-}
-
-export default SignUpPage

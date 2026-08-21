@@ -86,7 +86,7 @@ function SignUpPage() {
                     <label className="auth-input-label">Password</label>
 
                     <div className="relative">
-                      <MailIcon className="auth-input-icon" />
+                      <LockIcon className="auth-input-icon" />
 
                       <input
                         className="input"

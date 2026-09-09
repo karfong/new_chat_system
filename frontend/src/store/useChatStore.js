@@ -1,6 +1,8 @@
 import { create } from 'zustand';
+import toast from "react-hot-toast";
+import { axiosInstance } from "../lib/axios";
 
-export const userChatStore = create((set, get) => ({
+export const useChatStore = create((set, get) => ({
     allContacts: [],
     chats: [],
     messages: [],
@@ -8,7 +10,7 @@ export const userChatStore = create((set, get) => ({
     selectedUser: null,
     isUserLoading: false,
     isMessagesLoading: false,
-    isSoundEnabled: localStorage.getItem("isSoundEnabled") === true,
+    isSoundEnabled: JSON.parse(localStorage.getItem("isSoundEnabled")) === true,
     toggleSound: () => {
         localStorage.setItem("isSoundEnabled", !get().isSoundEnabled)
         set({ isSoundEnabled: !get().isSoundEnabled })
@@ -18,25 +20,26 @@ export const userChatStore = create((set, get) => ({
     setSelectedUser: (selectedUser) => set({ selectedUser }),
 
     getAllContacts: async () => {
-        set({ isUserLoading: true });
+        set({ isUsersLoading: true });
         try {
-            const response = await axiosInstance.get("/messages/contacts");
-            set({ allContacts: response.data });
+            const res = await axiosInstance.get("/messages/contacts");
+            set({ allContacts: res.data });
         } catch (error) {
             toast.error(error.response.data.message);
         } finally {
-            set({ isUserLoading: false });
+            set({ isUsersLoading: false });
         }
     },
+
     getMyChatPartners: async () => {
-        set({ isUserLoading: true });
+        set({ isUsersLoading: true });
         try {
-            const response = await axiosInstance.get("/messages/chats");
-            set({ chats: response.data });
+            const res = await axiosInstance.get("/messages/chats");
+            set({ chats: res.data });
         } catch (error) {
             toast.error(error.response.data.message);
         } finally {
-            set({ isUserLoading: false });
+            set({ isUsersLoading: false });
         }
     },
 
